@@ -1,6 +1,6 @@
 {
   "name": "templeit",
-  "version": "0.0.0",
+  "version": "1.0.3",
   "description": "A CLI that helps you manage templeit applications",
   "author": "Mateus Braga @bragamat",
   "bin": {

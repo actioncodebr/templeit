@@ -33,13 +33,11 @@ export default class Init extends Command {
       exec('rm -rf .git && git init')
 
       this.log(`${MESSAGES.BOOTSTRAP_DONE}`)
-      this.log(`cd ${args.name}`)
-
       this.log(`${MESSAGES.INSTALLING_DEPS}`)
       if (utils.existsFile('package-lock.json')) {
-        exec(`npm i`)
+        exec(`cd ${args.name} && npm i`)
       } else {
-        exec(`yarn`)
+        exec(`cd ${args.name} && yarn`)
       }
     } catch (error) {
       return this.log(error as any)
