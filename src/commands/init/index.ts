@@ -1,5 +1,5 @@
 import { Command, Flags } from '@oclif/core'
-import { exec } from 'shelljs'
+import { exec, cd } from 'shelljs'
 import * as utils from '../../utils'
 import { ERRORS, MESSAGES, TEMPLATES_URL } from '../../constants'
 
@@ -34,11 +34,15 @@ export default class Init extends Command {
 
       this.log(`${MESSAGES.BOOTSTRAP_DONE}`)
       this.log(`${MESSAGES.INSTALLING_DEPS}`)
+      cd(args.name)
+
       if (utils.existsFile('package-lock.json')) {
-        exec(`cd ${args.name} && npm i`)
+        exec('npm i')
       } else {
-        exec(`cd ${args.name} && yarn`)
+        exec('yarn')
       }
+
+      return process.chdir(`../${args.name}`)
     } catch (error) {
       return this.log(error as any)
     }
