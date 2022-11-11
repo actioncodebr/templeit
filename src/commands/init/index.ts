@@ -29,6 +29,11 @@ export default class Init extends Command {
 
       this.log(`${MESSAGES.BOOTSTRAPING_APP} ${args.name}`)
 
+      if (!TEMPLATES_URL[flags.template]) {
+        this.log(ERRORS.INVALID_FLAG)
+        return
+      }
+
       exec(`git clone ${TEMPLATES_URL[flags.template]} ${args.name}`)
       exec('rm -rf .git && git init')
 

@@ -16,7 +16,7 @@ $ npm install -g templeit
 $ templeit COMMAND
 running command...
 $ templeit (--version)
-templeit/1.0.4 darwin-x64 node-v18.12.0
+templeit/1.0.9 linux-x64 node-v14.19.2
 $ templeit --help [COMMAND]
 USAGE
   $ templeit COMMAND
@@ -80,7 +80,7 @@ EXAMPLES
   $ templeit init myapp --template=nodejs
 ```
 
-_See code: [dist/commands/init/index.ts](https://github.com/actioncodebr/templeit/blob/v1.0.4/dist/commands/init/index.ts)_
+_See code: [dist/commands/init/index.ts](https://github.com/actioncodebr/templeit/blob/v1.0.9/dist/commands/init/index.ts)_
 
 ## `templeit plugins`
 
