@@ -88,16 +88,16 @@ describe('Init Command', () => {
   })
 
   it('shows error if passed unknown template', async () => {
-    await Init.run(['qa', '--template=gotemplatejs'])
+    await Init.run(['qa', '--template=nonexistenttemplate'])
     jest.spyOn(Utils, 'isDirectory').mockReturnValueOnce(false as never)
 
-    expect(result).toContainValue(ERRORS.INVALID_FLAG)
+    expect(result.some(exp => (exp as string).trim() === ERRORS.INVALID_FLAG)).toBe(true)
 
     expect(result).not.toContain(
       expect.arrayContaining([MESSAGES.BOOTSTRAPING_APP]),
     )
     expect(sh).not.toHaveBeenCalledWith(
-      `git clone ${TEMPLATES_URL[TEMPLATES.REACTJS]} qa`,
+      `git clone ${TEMPLATES_URL['nonexistenttemplate']} qa`,
     )
     expect(sh).not.toHaveBeenCalledWith('rm -rf .git && git init')
 
