@@ -16,7 +16,7 @@ jest.mock('../../../utils/exists-directory', () => ({
 
 describe('Init Command', () => {
   let result: Array<string | Uint8Array> = []
-  let sh = jest.spyOn(shell, 'exec')
+  const sh = jest.spyOn(shell, 'exec')
 
   beforeEach(() => {
     result = []
@@ -91,13 +91,15 @@ describe('Init Command', () => {
     await Init.run(['qa', '--template=nonexistenttemplate'])
     jest.spyOn(Utils, 'isDirectory').mockReturnValueOnce(false as never)
 
-    expect(result.some(exp => (exp as string).trim() === ERRORS.INVALID_FLAG)).toBe(true)
+    expect(
+      result.some(exp => (exp as string).trim() === ERRORS.INVALID_FLAG),
+    ).toBe(true)
 
     expect(result).not.toContain(
       expect.arrayContaining([MESSAGES.BOOTSTRAPING_APP]),
     )
     expect(sh).not.toHaveBeenCalledWith(
-      `git clone ${TEMPLATES_URL['nonexistenttemplate']} qa`,
+      `git clone ${TEMPLATES_URL.nonexistenttemplate} qa`,
     )
     expect(sh).not.toHaveBeenCalledWith('rm -rf .git && git init')
 
