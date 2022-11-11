@@ -9,5 +9,5 @@ node_modules
 oclif.manifest.json
 qa/*
 coverage/
-/* .vscode */
-/* .vim */
+.vscode
+.vim
